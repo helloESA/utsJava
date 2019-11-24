@@ -12,7 +12,8 @@ package AplikasiRestoran;
 public class AplikasiRestoran_makan {
 
     protected String nama_makan; 
-    protected double harga_makan;
+    protected double harga_makan,
+                     sub_makan;
     protected int jumlah_makan;
 
     public String getNama_makan() {
@@ -38,9 +39,12 @@ public class AplikasiRestoran_makan {
     public void setJumlah_makan(int jumlah_makan) {
         this.jumlah_makan = jumlah_makan;
     }
+    
+    public double getSub_makan() {
+        return sub_makan;
+    }
 
-    public double subTotalMakan(){
-        double subtotalMakan = harga_makan*jumlah_makan;
-        return subtotalMakan;
+    public void setSub_makan(double sub_makan) {
+        this.sub_makan = sub_makan;
     }
 }

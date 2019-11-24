@@ -11,7 +11,8 @@ package AplikasiRestoran;
  */
 public class AplikasiRestoran_minum extends AplikasiRestoran_makan{
     protected String nama_minum; 
-    protected double harga_minum;
+    protected double harga_minum,
+                     sub_minum;
     protected int jumlah_minum;
 
     public String getNama_minum() {
@@ -37,11 +38,12 @@ public class AplikasiRestoran_minum extends AplikasiRestoran_makan{
     public void setJumlah_minum(int jumlah_minum) {
         this.jumlah_minum = jumlah_minum;
     }
-
     
-    public double subTotalMinum(){
-        double subtotalMinum = harga_minum*jumlah_minum;
-        return subtotalMinum;
+    public double getSub_minum() {
+        return sub_minum;
     }
-    
+
+    public void setSub_minum(double sub_minum) {
+        this.sub_minum = sub_minum;
+    }
 }
