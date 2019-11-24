@@ -13,7 +13,9 @@ import java.util.Scanner;
  * 
  */
 public class AplikasiRestoran_main {
+    //inisialisasi Scanner
     Scanner input = new Scanner(System.in);
+    //inisialiasi variable
     int i= 0,
         pilihan,
         jumlah_pesan;
@@ -36,26 +38,39 @@ public class AplikasiRestoran_main {
     
     public void isiData(){
         
-        System.out.println("============================================");
-        System.out.println("           RESTORAN MURAH BERKAH            ");
-        System.out.println("============================================");
-            System.out.println("Nomor Meja");
-            System.out.print("-> ");
-            no_meja = input.nextLine();
+        System.out.println("=====================================================");
+        System.out.println("                   RESTORAN MURAH BERKAH             ");
+        System.out.println("=====================================================");
+        System.out.println("Menu Makanan :");
+        System.out.println("1. Ayam Goreng + Nasi + Lauk Pauk    : Rp 20000");
+        System.out.println("2. Ikan Bakar + Nasi Liwet + Sambal  : Rp 25000");
+        System.out.println("3. Soto + Nasi                       : Rp 15000");
+        System.out.println("4. Kikil + Nasi + Kuah               : Rp 16500\n");
+        System.out.println("Menu Minuman :");
+        System.out.println("1. Es Teh Manis                      : Rp 12000");
+        System.out.println("2. Jus Buah                          : Rp 20000");
+        System.out.println("3. Es Kelapa Muda                    : Rp 12500");
+        System.out.println("4. Es Teh Lemon                      : Rp 25000");
+        System.out.println("=====================================================");
+        
+        System.out.println("Nomor Meja");
+        System.out.print("-> ");
+        no_meja = input.nextLine();
 
-            System.out.println("Nama Pelanggan");
-            System.out.print("-> ");
-            namaPemesan = input.nextLine();
+        System.out.println("Nama Pelanggan");
+        System.out.print("-> ");
+        namaPemesan = input.nextLine();
 
-
-            System.out.println("Jumlah Pelanggan");
-            System.out.print("-> ");
-            jumlah_pesan = input.nextInt();
+        System.out.println("Jumlah Pelanggan");
+        System.out.print("-> ");
+        jumlah_pesan = input.nextInt();
     }
     
     public void setMenu(){
+        
         AplikasiRestoran_makan makan = new AplikasiRestoran_makan();
         AplikasiRestoran_minum minum = new AplikasiRestoran_minum();
+        AplikasiRestoran_proses isi = new AplikasiRestoran_proses();
         AplikasiRestoran_makan makan_menu1 = new AplikasiRestoran_makan();
         AplikasiRestoran_makan makan_menu2 = new AplikasiRestoran_makan();
         AplikasiRestoran_makan makan_menu3 = new AplikasiRestoran_makan();
@@ -86,11 +101,7 @@ public class AplikasiRestoran_main {
                 
         do{
             System.out.println("Silahkan Pilih Menu Makanan :");
-            System.out.println("1. Ayam Goreng + Nasi + Lauk Pauk    : Rp 20000");
-            System.out.println("2. Ikan Bakar + Nasi Liwet + Sambal  : Rp 25000");
-            System.out.println("3. Soto + Nasi                       : Rp 15000");
-            System.out.println("4. Kikil + Nasi + Kuah               : Rp 16500");
-            System.out.println("-> ");
+            System.out.print("-> ");
             int pilih_menuMakan = input.nextInt();
                 switch (pilih_menuMakan) {
                     case 1:
@@ -120,19 +131,19 @@ public class AplikasiRestoran_main {
                 System.out.print("-> ");
                 berapa_makan[i] = input.nextInt();
                 sub_makan[i] = berapa_makan[i]*harga_makan[i];
+                makan.setSub_makan(sub_makan[i]);
                 
+                
+                System.out.println("\n--------------------------------------------");
                 System.out.println("Menu Makanan   : " + menu_makan[i]);
                 System.out.println("Harga/menu     : " + harga_makan[i]);
                 System.out.println("Jumlah Pesan   : " + berapa_makan[i]);
-                System.out.println("Harga Makanan  : " + sub_makan[i]);
+                System.out.println("Harga Makanan  : " + makan.getSub_makan());
+                System.out.println("\n--------------------------------------------");
                 System.out.println("\n");
 
             System.out.println("Silahkan Pilih Menu Minuman :");
-            System.out.println("1. Es Teh Manis      : Rp 12000");
-            System.out.println("2. Jus Buah          : Rp 20000");
-            System.out.println("3. Es Kelapa Muda    : Rp 12500");
-            System.out.println("4. Es Teh Lemon      : Rp 25000");
-            System.out.println("-> ");
+            System.out.print("-> ");
             int pilih_menuMinum = input.nextInt();
             switch (pilih_menuMinum) {
                 case 1:
@@ -161,44 +172,74 @@ public class AplikasiRestoran_main {
                 System.out.print("-> ");
                 berapa_minum[i] = input.nextInt();
                 sub_minum[i] = berapa_minum[i]*harga_minum[i];
+                minum.setSub_minum(sub_minum[i]);
                 
-                
+                System.out.println("\n--------------------------------------------");
                 System.out.println("Minuman yang dipesan : " + menu_minum[i]);
                 System.out.println("Harga per menu       : " + harga_minum[i]);
                 System.out.println("Jumlah Pesan         : " + berapa_minum[i]);
-                System.out.println("Harga Minuman        : " + sub_minum[i]);
-            
+                System.out.println("Harga Minuman        : " + minum.getSub_minum());
+                System.out.println("\n--------------------------------------------");
+                System.out.println("\n");
+
                 System.out.println("Ingin Pesan Lagi?(Y/N)");
                 ulangMenu = input.next();
                 i++;
         } while(ulangMenu.equals("Y")||ulangMenu.equals("y"));
-        eksekusiAkhir();
-    }
-    
-    
-    public void eksekusiAkhir(){
+        
+        
         System.out.println("-------------------- STRUK HARGA --------------------");
         System.out.println("No Meja         : "+no_meja+
                          "\nNama Pemesan    : "+namaPemesan+
                          "\nJumlah Pemesan  : "+jumlah_pesan+
                          "\nBanyak Pesanan  : "+i+" porsi"+
                          "\nDetail          : "+
-                         "\n------------------------------------------------------"+
-                         "\nMakanan : ");
+                         "\nA. Makanan : ");
         for (int j=0; j<i ; j++){
-            System.out.println(menu_makan[j] + " x " + berapa_makan[j] + " = Rp "+ sub_makan[j]);   
+            System.out.println(menu_makan[j] + " x " + berapa_makan[j] + " = Rp "+ sub_makan[j]);
+            totalBeli += sub_makan[j];
+            
         }
-        System.out.println("Minuman : ");
+        System.out.println("B. Minuman : ");
         for (int h=0; h<i ; h++){
              System.out.println(menu_minum[h] + " x " + berapa_minum[h] + " = Rp "+ sub_minum[h]);
+             totalBeli += sub_minum[h];
         }
-                         
+        isi.setTotalbeli(totalBeli);
+        System.out.println("------------------------------------------------------");
+        System.out.println("Total Sementara : "+totalBeli);
+        if(totalBeli >= 150000 && totalBeli < 300000){
+            diskon = totalBeli*0.15;
+            System.out.println("Mendapat Diskon sebesar "+diskon);
+        } else if(totalBeli >=300000){
+            diskon = totalBeli*0.3;
+            System.out.println("Mendapat Diskon sebesar "+diskon);
+        } 
+        isi.setDiskon(diskon);
+        
+        pajak = 0.1*totalBeli;
+        isi.setPajak(pajak);
+        System.out.println("Kena Pajak : "+pajak);
+        System.out.println("------------------------------------------------------");        
+        totalBayar = (totalBeli-diskon)+pajak;
+        isi.setTotalbayar(totalBayar);
+        System.out.println("Total Bayar   : Rp "+totalBayar+
+                           "\n\n\n\n");
+            System.out.println("=====================================================");
+            System.out.println("      RINCIAN TRANSAKSI RESTORAN MURAH BERKAH        ");
+            System.out.println("=====================================================");
+            System.out.println("| NO MEJA\t| NAMA PEMESAN\t\t| MAKANAN\t\t| JUMLAH\t| HARGA\t\t| MINUMAN\t\t| JUMLAH\t| HARGA\t\t| TOTAL BAYAR\t\t|");
+        for(int v = 0; v < i; v++){
+            System.out.print("| "+no_meja+"\t\t| "+namaPemesan+"\t\t| "+
+                             menu_makan[v]+"\t\t| "+berapa_makan[v]+"\t| "+harga_makan[v]+"\t\t| "+
+                             menu_minum[v]+"\t\t| "+berapa_minum[v]+"\t| "+harga_minum[v]+"\t\t| "+
+                             isi.getTotalbayar()+"\n");
+        }
     }
     
     public void start(){
         isiData();
         setMenu();
-        eksekusiAkhir();
     }
     
     public static void main(String[] args) {
